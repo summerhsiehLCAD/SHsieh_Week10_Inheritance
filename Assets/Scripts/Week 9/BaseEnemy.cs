@@ -8,11 +8,19 @@ public class BaseEnemy : MonoBehaviour
     public float speed = 3f;
     public float attackDamage = 0f;
 
+    public float attackRange;
+
     private float timer = 0f;
 
     [SerializeField] protected float attackInterval = 1f;
 
-    private PlayerRPG player;
+    protected PlayerRPG player;
+
+    public bool hasReachedPlayer = false;
+
+    protected Rigidbody rbody;
+
+    protected Vector3 moveDirection;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -23,12 +31,16 @@ public class BaseEnemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        timer += Time.deltaTime;
-
-        if(timer >= attackInterval)
+        if (Vector3.Distance(this.transform.position, player.transform.position) < attackRange)
         {
-            Attack();
-            timer = 0f;
+
+            timer += Time.deltaTime;
+
+            if (timer >= attackInterval)
+            {
+                Attack();
+                timer = 0f;
+            }
         }
     }
 
@@ -39,11 +51,13 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Move()
     {
-        
+      
     }
 
     public virtual void TakeDamage(float damage)
     {
+        Debug.Log("OWIEEEE");
+
         health -= damage;
 
         if(health <= 0f)

@@ -763,6 +763,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 4323545043156385583, guid: f3f95da011956ff44911bcab5ab762ab, type: 3}
+      propertyPath: attackRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323545043156385583, guid: f3f95da011956ff44911bcab5ab762ab, type: 3}
+      propertyPath: attackDamage
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5217506438988143466, guid: f3f95da011956ff44911bcab5ab762ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.95

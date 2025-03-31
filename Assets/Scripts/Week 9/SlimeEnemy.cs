@@ -16,11 +16,15 @@ public class SlimeEnemy : BaseEnemy
     // Update is called once per frame
     protected override void Update()
     {
+        this.transform.LookAt(player.transform.position);
+
         base.Update();
     }
 
     protected override void Attack()
     {
+        Debug.Log("HIYA");
+
         base.Attack();
         Debug.Log(this.gameObject.name + " deals " + attackDamage + " damage to you!");
     }
@@ -28,5 +32,11 @@ public class SlimeEnemy : BaseEnemy
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+    }
+
+    public override void Move()
+    {
+
+        base.Move();
     }
 }
