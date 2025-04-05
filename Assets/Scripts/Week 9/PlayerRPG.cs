@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerRPG : MonoBehaviour
 {
-    public float health = 100f;
+    public float maxhealth = 100f;
+    public float currenthealth;
+
     public float attackDamage = 5f;
     public float attackInterval = 1f;
 
@@ -14,10 +16,12 @@ public class PlayerRPG : MonoBehaviour
 
     public Image attackReadyImage;
 
+    public bool PowerPickedUp = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        currenthealth = maxhealth;
     }
 
     // Update is called once per frame
@@ -64,11 +68,19 @@ public class PlayerRPG : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        currenthealth -= damage;
 
-        if (health <= 0)
+        if (currenthealth <= 0)
         {
             Debug.Log("YOU DIED");
         }
     }
+
+    public void Healed(float heal)
+    {
+        currenthealth += heal;
+
+        currenthealth = Mathf.Clamp(currenthealth, 0f, maxhealth);
+    }
+
 }
