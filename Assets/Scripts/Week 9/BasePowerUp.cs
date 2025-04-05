@@ -22,9 +22,9 @@ public class BasePowerUp : MonoBehaviour
 
         PlayerRPG player = other.GetComponent<PlayerRPG>();
 
-        if (player.PowerPickedUp == false)
+        if (player.powerPickedUp == false)
         {
-            player.PowerPickedUp = true;
+            player.powerPickedUp = true;
             Destroy(this.gameObject);
         }
     }

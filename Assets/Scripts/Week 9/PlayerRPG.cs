@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerRPG : MonoBehaviour
 {
-    public float maxhealth = 100f;
-    public float currenthealth;
+    public float maxHealth = 100f;
+    public float currentHealth;
 
     public float attackDamage = 5f;
     public float attackInterval = 1f;
@@ -16,12 +16,17 @@ public class PlayerRPG : MonoBehaviour
 
     public Image attackReadyImage;
 
-    public bool PowerPickedUp = false;
+    public bool powerPickedUp = false;
+
+    public int maxAmmo = 20;
+    public int currentAmmo;
 
     // Start is called before the first frame update
     void Start()
     {
-        currenthealth = maxhealth;
+        currentHealth = maxHealth;
+
+        currentAmmo = maxAmmo;
     }
 
     // Update is called once per frame
@@ -68,19 +73,26 @@ public class PlayerRPG : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currenthealth -= damage;
+        currentHealth -= damage;
 
-        if (currenthealth <= 0)
+        if (currentHealth <= 0)
         {
             Debug.Log("YOU DIED");
         }
     }
 
-    public void Healed(float heal)
+    public void AmmoAmount()
     {
-        currenthealth += heal;
+   
+        if (currentAmmo > 0)
+        {
+            // make a count down based on every shot taken
+        }
 
-        currenthealth = Mathf.Clamp(currenthealth, 0f, maxhealth);
+        else if (currentAmmo <= 0)
+        {
+            // ran out of ammo, can't shot
+            Debug.Log("Out of Ammo");
+        }
     }
-
 }
