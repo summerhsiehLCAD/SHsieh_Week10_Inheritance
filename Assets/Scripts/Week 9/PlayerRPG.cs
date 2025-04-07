@@ -81,18 +81,4 @@ public class PlayerRPG : MonoBehaviour
         }
     }
 
-    public void AmmoAmount()
-    {
-   
-        if (currentAmmo > 0)
-        {
-            // make a count down based on every shot taken
-        }
-
-        else if (currentAmmo <= 0)
-        {
-            // ran out of ammo, can't shot
-            Debug.Log("Out of Ammo");
-        }
-    }
 }

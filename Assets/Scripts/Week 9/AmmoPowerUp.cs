@@ -21,16 +21,16 @@ public class AmmoPower : BasePowerUp
 
     public void AmmoPickedUp()
     {
-        PlayerRPG PlayerRPG = playerAmmo.GetComponent<PlayerRPG>();
+        Shooter Shooter = playerAmmo.GetComponent<Shooter>();
 
-        if (PlayerRPG.currentAmmo <= PlayerRPG.maxAmmo)
+        if (Shooter.currentAmmo <= Shooter.maxAmmo)
         {
-            PlayerRPG.currentAmmo += ammoPickUp;
-            PlayerRPG.currentAmmo = Mathf.Clamp(PlayerRPG.currentAmmo, 0, PlayerRPG.maxAmmo);
+            Shooter.currentAmmo += ammoPickUp;
+            Shooter.currentAmmo = Mathf.Clamp(Shooter.currentAmmo, 0, Shooter.maxAmmo);
             Debug.Log("You've picked up 5 Ammo!");
         }
     }
-    private new void OnTriggerEnter(Collider other)
+    protected new void OnTriggerEnter(Collider other)
     {
         other.CompareTag("Player");
 
