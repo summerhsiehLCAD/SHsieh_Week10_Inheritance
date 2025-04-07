@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : PlayerRPG
+public class Shooter : MonoBehaviour
 {
     public GameObject bulletPrefab;
+
+    public PlayerRPG firstPerson; //references the playerRPG script
 
     public float bulletPower = 1000f;
 
@@ -12,16 +14,21 @@ public class Shooter : PlayerRPG
 
     public bool hasAmmo = true;
 
+    public PlayerRPG player;
+
     // Start is called before the first frame update
     void Start()
     {
-        currentAmmo = maxAmmo;
+   
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && (currentAmmo > 0))
+
+        //firstperson.(componnent) will reference whatever variable is in the PlayerRPG script
+
+       if (Input.GetKeyDown(KeyCode.B) && (firstPerson.currentAmmo > 0))
         {
             hasAmmo = true;
 
@@ -31,10 +38,10 @@ public class Shooter : PlayerRPG
 
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * bulletPower);
 
-                currentAmmo--;
+            //    currentAmmo--;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.B) && (currentAmmo <= 0))
+       else if (Input.GetKeyDown(KeyCode.B) && (player.currentAmmo <= 0))
         {
             hasAmmo = false;
 

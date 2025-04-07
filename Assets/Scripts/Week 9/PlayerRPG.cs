@@ -10,13 +10,16 @@ public class PlayerRPG : MonoBehaviour
 
     public float attackDamage = 5f;
     public float attackInterval = 1f;
+    public float buffAmount = 3f;
+    public float buffDuration = 7f;
+    public bool buffActivated = false;
 
     private float timer;
     private bool isAttackReady = true;
 
     public Image attackReadyImage;
 
-    public bool powerPickedUp = false;
+    public GameObject shooter;
 
     public int maxAmmo = 20;
     public int currentAmmo;
@@ -66,7 +69,16 @@ public class PlayerRPG : MonoBehaviour
 
     public void Attack(BaseEnemy enemy)
     {
-        enemy.TakeDamage(attackDamage);
+
+        if (buffActivated == true)
+        {
+            enemy.TakeDamage(attackDamage + buffAmount);
+        }
+        else
+        {
+            enemy.TakeDamage(attackDamage);
+        }
+        
         isAttackReady = false;
         attackReadyImage.gameObject.SetActive(isAttackReady);
     }
@@ -79,6 +91,18 @@ public class PlayerRPG : MonoBehaviour
         {
             Debug.Log("YOU DIED");
         }
+    }
+
+    public void PickUpAttackPowerUp()
+    {
+        buffActivated = true;
+        Debug.Log("Attack Buff Accquired!");
+        Invoke("DeactivateAttackPowerUp", buffDuration);
+    }
+
+    public void DeactivateAttackPowerUp()
+    {
+        buffActivated = false;
     }
 
 }

@@ -18,37 +18,22 @@ public class HealthPowerUp : BasePowerUp
     {
         
     }
-    //Basically need to destrot it, but unsure how to because base should be destroying it
-    //It should activate on trigger tho so idkk
-
-    /*private new void OnTriggerEnter(Collider other)
-    {
-        HealthPotionUsed();
-    }*/
-
-    //decided to just leave basepowerup blank for now because idk what to do
 
     public void HealthPotionUsed()
     {
-        PlayerRPG PlayerRPG = playerHealth.GetComponent<PlayerRPG>();
 
-        if (PlayerRPG.currentHealth <= PlayerRPG.maxHealth)
+        if (player.currentHealth <= player.maxHealth)
         {
-            PlayerRPG.currentHealth += amountHeal;
-            PlayerRPG.currentHealth = Mathf.Clamp(PlayerRPG.currentHealth, 0, PlayerRPG.maxHealth);
+            player.currentHealth += amountHeal;
+            player.currentHealth = Mathf.Clamp(player.currentHealth, 0, player.maxHealth);
             Debug.Log("You've been Healed!");
         }
     }
 
-    protected new void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        other.CompareTag("Player");
-
-        PlayerRPG player = other.GetComponent<PlayerRPG>();
-        
+        base.OnTriggerEnter(other);
         HealthPotionUsed();
 
-        Destroy(this.gameObject);
-        
     }
 }

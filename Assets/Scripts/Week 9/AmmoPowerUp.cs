@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AmmoPower : BasePowerUp
 {
-    public GameObject playerAmmo;
     public int ammoPickUp = 5;
 
     // Start is called before the first frame update
@@ -21,24 +20,18 @@ public class AmmoPower : BasePowerUp
 
     public void AmmoPickedUp()
     {
-        Shooter Shooter = playerAmmo.GetComponent<Shooter>();
 
-        if (Shooter.currentAmmo <= Shooter.maxAmmo)
+     if (player.currentAmmo <= player.maxAmmo)
         {
-            Shooter.currentAmmo += ammoPickUp;
-            Shooter.currentAmmo = Mathf.Clamp(Shooter.currentAmmo, 0, Shooter.maxAmmo);
+           player.currentAmmo += ammoPickUp;
+           player.currentAmmo = Mathf.Clamp(player.currentAmmo, 0, player.maxAmmo);
             Debug.Log("You've picked up 5 Ammo!");
         }
     }
-    protected new void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        other.CompareTag("Player");
-
-        PlayerRPG player = other.GetComponent<PlayerRPG>();
-
+        base.OnTriggerEnter(other);
         AmmoPickedUp();
-
-        Destroy(this.gameObject);
 
     }
 }

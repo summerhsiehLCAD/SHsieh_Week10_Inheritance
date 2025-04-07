@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BasePowerUp : MonoBehaviour
 {
+    protected PlayerRPG player;
+    protected float respawnDuration = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,16 +19,21 @@ public class BasePowerUp : MonoBehaviour
         
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         other.CompareTag("Player");
 
-        PlayerRPG player = other.GetComponent<PlayerRPG>();
+        player = other.GetComponent<PlayerRPG>();
 
-        if (player.powerPickedUp == false)
-        {
-            player.powerPickedUp = true;
-            Destroy(this.gameObject);
-        }
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        Invoke("Respawn", respawnDuration);
+    }
+
+    protected void Respawn()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
     }
 }
