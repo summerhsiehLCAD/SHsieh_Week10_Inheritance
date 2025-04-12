@@ -21,6 +21,7 @@ public class PlayerRPG : MonoBehaviour
 
     public GameObject shooter;
 
+    public float rangedDamage = 3f;
     public int maxAmmo = 20;
     public int currentAmmo;
 
@@ -81,6 +82,11 @@ public class PlayerRPG : MonoBehaviour
         
         isAttackReady = false;
         attackReadyImage.gameObject.SetActive(isAttackReady);
+    }
+
+    public void RangedAttack(BaseEnemy enemy)
+    {
+        enemy.TakeRangedDamage(rangedDamage);
     }
 
     public void TakeDamage(float damage)

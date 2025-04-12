@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
 {
-    public float health = 100f;
+    public float health = 40f;
     public float speed = 3f;
     public float attackDamage = 0f;
 
-    public float attackRange;
+    public float attackRange = 5f;
 
     private float timer = 0f;
 
     [SerializeField] protected float attackInterval = 1f;
 
     protected PlayerRPG player;
-
-    public bool hasReachedPlayer = false;
 
     protected Rigidbody rbody;
 
@@ -49,9 +47,16 @@ public class BaseEnemy : MonoBehaviour
         player.TakeDamage(attackDamage);
     }
 
-    public virtual void Move()
+    public virtual void TakeRangedDamage(float damage)
     {
-      
+        Debug.Log("OWE OWE OWE");
+
+        health -= damage;
+
+        if (health <= 0f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public virtual void TakeDamage(float damage)

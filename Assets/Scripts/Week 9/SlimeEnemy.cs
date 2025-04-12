@@ -34,9 +34,9 @@ public class SlimeEnemy : BaseEnemy
         base.TakeDamage(damage);
     }
 
-    public override void Move()
+    public override void TakeRangedDamage(float damage)
     {
-
-        base.Move();
+        base.TakeRangedDamage(damage);
     }
+
 }

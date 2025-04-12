@@ -6,15 +6,13 @@ public class Shooter : MonoBehaviour
 {
     public GameObject bulletPrefab;
 
-    public PlayerRPG firstPerson; //references the playerRPG script
+    public PlayerRPG player; //references the playerRPG script
 
     public float bulletPower = 1000f;
 
     public Transform bulletSpawnPosition;
 
     public bool hasAmmo = true;
-
-    public PlayerRPG player;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +23,10 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        //player.(componnent) will reference whatever variable is in the PlayerRPG script
 
-        //firstperson.(componnent) will reference whatever variable is in the PlayerRPG script
-
-       if (Input.GetKeyDown(KeyCode.B) && (firstPerson.currentAmmo > 0))
+       if (Input.GetKeyDown(KeyCode.B) && (player.currentAmmo > 0))
         {
             hasAmmo = true;
 
@@ -38,7 +36,7 @@ public class Shooter : MonoBehaviour
 
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * bulletPower);
 
-            //    currentAmmo--;
+                player.currentAmmo--;
             }
         }
        else if (Input.GetKeyDown(KeyCode.B) && (player.currentAmmo <= 0))
