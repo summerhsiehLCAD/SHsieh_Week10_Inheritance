@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeEnemy : BaseEnemy
+public class EvolvedSlimeEnemy : BaseEnemy
 {
     public AudioScript Audio;
 
@@ -11,15 +11,13 @@ public class SlimeEnemy : BaseEnemy
     {
         base.Start();
 
-        Debug.Log("HeeHo I'm a slime!");
-
-        Audio = GetComponent<AudioScript>();
+        Debug.Log("HeeHo I'm a bigger slime!");
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-       // this.transform.LookAt(player.transform.position);
+        // this.transform.LookAt(player.transform.position);
 
         base.Update();
     }
@@ -29,23 +27,24 @@ public class SlimeEnemy : BaseEnemy
         Debug.Log("HIYA");
 
         base.Attack();
-        //Audio.attackSFX.Play();
         Debug.Log(this.gameObject.name + " deals " + attackDamage + " damage to you!");
 
+        Audio.attack2SFX.Play();
     }
 
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
 
-        Audio.hitSFX.Play();
+        Audio.hit2SFX.Play();
+
     }
 
     public override void TakeRangedDamage(float damage)
     {
         base.TakeRangedDamage(damage);
 
-        Audio.hitSFX.Play();
+        Audio.hit2SFX.Play();
     }
 
 }

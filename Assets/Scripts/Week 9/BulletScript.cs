@@ -26,11 +26,11 @@ public class BulletScript1 : MonoBehaviour
 
         Debug.Log(collision.gameObject.name);
 
-        if (gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<BaseEnemy>().TakeRangedDamage(3f);
 
-            enemy.TakeRangedDamage(3f);
+            Debug.Log("Enemy Taken Damage");
 
             Destroy(gameObject);
         }

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerRPG : MonoBehaviour
 {
+    public TextMeshProUGUI healthScore;
+
     public float maxHealth = 100f;
     public float currentHealth;
 
@@ -36,7 +39,9 @@ public class PlayerRPG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isAttackReady == false)
+        UpdateHealthUI();
+
+        if (isAttackReady == false)
         {
             timer += Time.deltaTime;
 
@@ -109,6 +114,11 @@ public class PlayerRPG : MonoBehaviour
     public void DeactivateAttackPowerUp()
     {
         buffActivated = false;
+    }
+
+    public void UpdateHealthUI()
+    {
+        healthScore.text = "Health:" + currentHealth.ToString();
     }
 
 }
