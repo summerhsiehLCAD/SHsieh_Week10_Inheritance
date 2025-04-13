@@ -25,11 +25,20 @@ public class BasePowerUp : MonoBehaviour
 
         player = other.GetComponent<PlayerRPG>();
 
-        GetComponent<MeshRenderer>().enabled = false;
+        if (other.gameObject == player)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+
+            Invoke("Respawn", respawnDuration);
+        }
+    }
+
+      /*  GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
 
-        Invoke("Respawn", respawnDuration);
-    }
+        Invoke("Respawn", respawnDuration); 
+    }*/
 
     protected void Respawn()
     {

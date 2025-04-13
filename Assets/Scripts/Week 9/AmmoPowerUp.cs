@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AmmoPower : BasePowerUp
 {
+   //protected new PlayerRPG player;
+
     public int ammoPickUp = 5;
 
     // Start is called before the first frame update

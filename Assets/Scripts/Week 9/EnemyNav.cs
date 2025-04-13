@@ -1,39 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour
+public class EnemyNav : EvolvedSlimeEnemy
 {
-    public float health = 40f;
-    public float speed = 3f;
-    public float attackDamage = 0f;
+    public BaseEnemy baseEnemyScript;
 
-    public float attackRange = 5f;
+    [SerializeField]
+    protected float aggroRange = 10f;
 
-    public float timer = 0f;
+    protected NavMeshAgent navAgent;
 
-    [SerializeField] 
-    protected float attackInterval = 1f;
+    protected bool hasSeenPlayer = false;
 
-    protected PlayerRPG player;
+    protected int patrolPointIndex = 0;
 
-    protected Rigidbody rbody;
-
-    protected Vector3 moveDirection;
+    [SerializeField]
+    protected List<Transform> patrolPoints = new List<Transform>();
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected override void Start()
     {
         player = FindAnyObjectByType<PlayerRPG>();
-        /*navAgent = GetComponent<NavMeshAgent>();
-        navAgent.SetDestination(patrolPoints[patrolPointIndex].position);*/
+        navAgent = GetComponent<NavMeshAgent>();
+        navAgent.SetDestination(patrolPoints[patrolPointIndex].position);
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected override void Update()
     {
-      /*  if (hasSeenPlayer == true)
+        if (hasSeenPlayer == true)
         {
             if (navAgent.remainingDistance < 0.5f)
             {
@@ -91,7 +89,7 @@ public class BaseEnemy : MonoBehaviour
             if (navAgent.remainingDistance < 0.5f)
             {
                 patrolPointIndex++;
-                
+
                 if (patrolPointIndex >= patrolPoints.Count)
                 {
                     patrolPointIndex = 0;
@@ -102,60 +100,15 @@ public class BaseEnemy : MonoBehaviour
             }
         }
 
-        if (Vector3.Distance(this.transform.position, player.transform.position) < attackRange)
-        {
-
-            timer += Time.deltaTime;
-
-            if (timer >= attackInterval)
-            {
-                Attack();
-                timer = 0f;
-            }
-        }*/
     }
 
-    protected virtual void Attack()
-    {
-        player.TakeDamage(attackDamage);
-    }
-
-    public virtual void TakeRangedDamage(float damage)
-    {
-        
-        Debug.Log("OWE OWE OWE");
-
-        health -= damage;
-
-        if (health <= 0f)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    public virtual void TakeDamage(float damage)
-    {
-       
-        Debug.Log("OWIEEEE");
-
-        health -= damage;
-
-        if(health <= 0f)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-   /* protected virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             hasSeenPlayer = true;
         }
     }
-    
-
-   
 
     public void SeePlayer()
     {
@@ -171,7 +124,7 @@ public class BaseEnemy : MonoBehaviour
                 hasSeenPlayer = true;
             }
         }
-       
+
     }
 
     protected bool IsPlayerInLos()
@@ -192,5 +145,5 @@ public class BaseEnemy : MonoBehaviour
         }
 
         return false;
-    }*/
+    }
 }
