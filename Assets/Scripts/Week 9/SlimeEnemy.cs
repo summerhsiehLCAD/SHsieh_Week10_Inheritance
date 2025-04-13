@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SlimeEnemy : BaseEnemy
 {
-    public AudioScript Audio;
+    public AudioSource attackNorm;
+    public AudioSource damageNorm;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -12,8 +13,6 @@ public class SlimeEnemy : BaseEnemy
         base.Start();
 
         Debug.Log("HeeHo I'm a slime!");
-
-        Audio = GetComponent<AudioScript>();
     }
 
     // Update is called once per frame
@@ -26,26 +25,27 @@ public class SlimeEnemy : BaseEnemy
 
     protected override void Attack()
     {
+        attackNorm.Play();
+
         Debug.Log("HIYA");
 
         base.Attack();
-        //Audio.attackSFX.Play();
         Debug.Log(this.gameObject.name + " deals " + attackDamage + " damage to you!");
 
     }
 
     public override void TakeDamage(float damage)
     {
-        base.TakeDamage(damage);
+        damageNorm.Play();
 
-        Audio.hitSFX.Play();
+        base.TakeDamage(damage);
     }
 
     public override void TakeRangedDamage(float damage)
     {
-        base.TakeRangedDamage(damage);
+        damageNorm.Play();
 
-        Audio.hitSFX.Play();
+        base.TakeRangedDamage(damage);
     }
 
 }

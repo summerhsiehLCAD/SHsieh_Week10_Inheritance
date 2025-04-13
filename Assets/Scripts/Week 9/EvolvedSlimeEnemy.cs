@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EvolvedSlimeEnemy : BaseEnemy
 {
-    public AudioScript Audio;
+    public AudioSource attackEv;
+    public AudioSource damageEv;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -24,27 +25,26 @@ public class EvolvedSlimeEnemy : BaseEnemy
 
     protected override void Attack()
     {
+        attackEv.Play();
+
         Debug.Log("HIYA");
 
         base.Attack();
         Debug.Log(this.gameObject.name + " deals " + attackDamage + " damage to you!");
-
-        Audio.attack2SFX.Play();
     }
 
     public override void TakeDamage(float damage)
     {
+        damageEv.Play();
+
         base.TakeDamage(damage);
-
-        Audio.hit2SFX.Play();
-
     }
 
     public override void TakeRangedDamage(float damage)
     {
-        base.TakeRangedDamage(damage);
+        damageEv.Play();
 
-        Audio.hit2SFX.Play();
+        base.TakeRangedDamage(damage);
     }
 
 }
