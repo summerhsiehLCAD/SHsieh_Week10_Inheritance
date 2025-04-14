@@ -121,4 +121,12 @@ public class PlayerRPG : MonoBehaviour
         healthScore.text = "Health:" + currentHealth.ToString();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "VisionCone")
+        {
+            other.GetComponentInParent<EnemyNav>().SeePlayer();
+        }
+    }
+
 }

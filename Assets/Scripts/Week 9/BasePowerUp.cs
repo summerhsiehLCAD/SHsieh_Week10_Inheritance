@@ -8,9 +8,9 @@ public class BasePowerUp : MonoBehaviour
     protected float respawnDuration = 20f;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        
+        player = FindFirstObjectByType<PlayerRPG>();
     }
 
     // Update is called once per frame
@@ -21,11 +21,10 @@ public class BasePowerUp : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        other.CompareTag("Player");
+       
+      //  player = other.GetComponent<PlayerRPG>();
 
-        player = other.GetComponent<PlayerRPG>();
-
-        if (other.gameObject == player)
+        if (other.CompareTag("Player"))
         {
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
