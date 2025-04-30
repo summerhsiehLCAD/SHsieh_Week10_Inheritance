@@ -2392,7 +2392,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 6219b89369e6c8644a011936457068a3, type: 3}
   m_Resource: {fileID: 8300000, guid: 6219b89369e6c8644a011936457068a3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.632
+  m_Volume: 0.221
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2603,7 +2603,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 15bf75ed2f14cd447b6ee83b15e7bf9b, type: 3}
   m_Resource: {fileID: 8300000, guid: 15bf75ed2f14cd447b6ee83b15e7bf9b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.541
+  m_Volume: 0.296
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2814,7 +2814,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: ddcb1711a1f4de1499b659f9c51e4ad3, type: 3}
   m_Resource: {fileID: 8300000, guid: ddcb1711a1f4de1499b659f9c51e4ad3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.563
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4367,8 +4367,8 @@ MonoBehaviour:
   healthScore: {fileID: 1657871847}
   maxHealth: 100
   currentHealth: 0
-  attackDamage: 5
-  attackInterval: 1
+  attackDamage: 10
+  attackInterval: 0.1
   buffAmount: 3
   buffDuration: 7
   buffActivated: 0
@@ -7014,7 +7014,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5693c798501baab4288ba4be27f0a766, type: 3}
   m_Resource: {fileID: 8300000, guid: 5693c798501baab4288ba4be27f0a766, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.573
+  m_Volume: 0.291
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7408,7 +7408,11 @@ PrefabInstance:
       objectReference: {fileID: 683611749}
     - target: {fileID: -6795928729889820987, guid: c00f1602e88fbf641ba8f06ac0216286, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6795928729889820987, guid: c00f1602e88fbf641ba8f06ac0216286, type: 3}
+      propertyPath: attackDamage
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -6795928729889820987, guid: c00f1602e88fbf641ba8f06ac0216286, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -7545,7 +7549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 40
   speed: 3
-  attackDamage: 0
+  attackDamage: 3
   attackRange: 5
   timer: 0
   attackInterval: 1
